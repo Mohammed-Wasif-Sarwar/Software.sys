@@ -83,6 +83,10 @@ $projectCount = $stmt->fetchColumn();
                         <span class="detail-value"><?= date('F j, Y', strtotime($user['registration_date'] ?? 'now')) ?></span>
                     </div>
                 </div>
+                
+                <div class="profile-actions">
+                    <a href="editprofile.php" class="dashboard-button">Edit Profile</a>
+                </div>
             </section>
 
             <section class="stats-card">
@@ -109,29 +113,32 @@ $projectCount = $stmt->fetchColumn();
             </section>
 
             <section class="recent-card">
-                <h2>Recent Projects</h2>
-                <?php
-                $stmt = $pdo->prepare('SELECT * FROM projects WHERE UserName = :username ORDER BY StartDate DESC LIMIT 3');
-                $stmt->execute(['username' => $_SESSION['username']]);
-                $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                
-                if (count($projects) > 0): ?>
-                    <div class="project-list">
-                        <?php foreach ($projects as $project): ?>
-                            <div class="project-item">
-                                <h3><?= htmlspecialchars($project['Title']) ?></h3>
-                                <div class="project-meta">
-                                    <span class="phase-badge <?= strtolower($project['Phase_Dev']) ?>"><?= htmlspecialchars($project['Phase_Dev']) ?></span>
-                                    <span><?= date('M j, Y', strtotime($project['StartDate'])) ?> - <?= date('M j, Y', strtotime($project['EndDate'])) ?></span>
-                                </div>
-                                <a href="viewprojects.php" class="project-link" style="color:white;">View Project →</a>
-                            </div>
-                        <?php endforeach; ?>
+    <h2>Recent Projects</h2>
+    <?php
+    $stmt = $pdo->prepare('SELECT * FROM projects WHERE UserName = :username ORDER BY StartDate DESC LIMIT 3');
+    $stmt->execute(['username' => $_SESSION['username']]);
+    $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (count($projects) > 0): ?>
+        <div class="project-list">
+            <?php foreach ($projects as $project): ?>
+                <div class="project-item">
+                    <h3><?= htmlspecialchars($project['Title']) ?></h3>
+                    <div class="project-meta">
+                        <span class="phase-badge <?= strtolower($project['Phase_Dev']) ?>"><?= htmlspecialchars($project['Phase_Dev']) ?></span>
+                        <span><?= date('M j, Y', strtotime($project['StartDate'])) ?> - <?= date('M j, Y', strtotime($project['EndDate'])) ?></span>
                     </div>
-                <?php else: ?>
-                    <p class="no-projects">You don't have any projects yet. <a href="newproject.php">Create your first project</a> to get started!</p>
-                <?php endif; ?>
-            </section>
+                    <form method="post" action="viewprojects.php" style="display: inline;">
+                        <input type="hidden" name="id" value="<?= $project['PID'] ?>">
+                        <button type="submit" class="project-link" style="background: none; border: none; color: white; cursor: pointer; padding: 0; text-decoration: underline;">View Project →</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p class="no-projects">You don't have any projects yet. <a href="newproject.php">Create your first project</a> to get started!</p>
+    <?php endif; ?>
+</section>
         </div>
     </main>
 </body>
