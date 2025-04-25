@@ -83,10 +83,6 @@ $projectCount = $stmt->fetchColumn();
                         <span class="detail-value"><?= date('F j, Y', strtotime($user['registration_date'] ?? 'now')) ?></span>
                     </div>
                 </div>
-                
-                <div class="profile-actions">
-                    <a href="editprofile.php" class="dashboard-button">Edit Profile</a>
-                </div>
             </section>
 
             <section class="stats-card">
