@@ -128,7 +128,7 @@ $projectCount = $stmt->fetchColumn();
                                     <span class="phase-badge <?= strtolower($project['Phase_Dev']) ?>"><?= htmlspecialchars($project['Phase_Dev']) ?></span>
                                     <span><?= date('M j, Y', strtotime($project['StartDate'])) ?> - <?= date('M j, Y', strtotime($project['EndDate'])) ?></span>
                                 </div>
-                                <a href="viewproject.php?id=<?= $project['PID'] ?>" class="project-link">View Project →</a>
+                                <a href="viewprojects.php" class="project-link">View Project →</a>
                             </div>
                         <?php endforeach; ?>
                     </div>
