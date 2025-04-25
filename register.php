@@ -10,7 +10,7 @@ $valid = true;
 
 // If user already logged in, redirect
 if (isset($_SESSION['username'])) {
-    header("Location: home.html");
+    header("Location: home.php");
     exit();
 }
 
