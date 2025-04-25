@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
             
             <?php if ($success): ?>
-                <div style="color: green; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px;">
+                <div style="color: white; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px;">
                     <?= htmlspecialchars($success) ?>
                 </div>
             <?php endif; ?>
