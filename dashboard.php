@@ -84,9 +84,6 @@ $projectCount = $stmt->fetchColumn();
                     </div>
                 </div>
                 
-                <div class="profile-actions">
-                    <a href="editprofile.php" class="dashboard-button">Edit Profile</a>
-                </div>
             </section>
 
             <section class="stats-card">
