@@ -3,14 +3,23 @@ session_start();
 require_once("headers.php");
 
 $loggedin = isset($_SESSION['username']);
-$username = $flag = "";
+$username = $flag = $email = "";
 
 if ($loggedin) {
+    // Query for the flag
     $stmt = $pdo->prepare('SELECT Flag FROM countries WHERE Country = :coun');
     $stmt->execute(['coun' => $_SESSION['country']]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $username = htmlspecialchars($_SESSION['username']);
     $flag = $row['Flag'] ?? "";
+    
+    // Query for the email
+    $stmt = $pdo->prepare('SELECT Email FROM users WHERE UserName = :user');
+    $stmt->execute(['user' => $_SESSION['username']]);
+    $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+    $username = htmlspecialchars($_SESSION['username']);
+    $email = $userRow['Email']; 
+}else{
+    header("Location: login.php");
 }
 
 $error = '';
@@ -21,24 +30,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description'] ?? '');
     $startDate = trim($_POST['start_date'] ?? '');
     $endDate = trim($_POST['end_date'] ?? '');
-    $phase = trim($_POST['phase'] ?? 'Design');
-    $feedback = trim($_POST['feedback'] ?? '');
+    $cost = trim($_POST['cost'] ?? 0);
 
     if (empty($title) || empty($description) || empty($startDate) || empty($endDate)) {
         $error = 'Please fill in all required fields';
     } else {
         try {
-            $stmt = $pdo->prepare('INSERT INTO projects (Title, Short_Description, StartDate, EndDate, Phase_Dev, Feedback, UserName) 
-                                   VALUES (:title, :desc, :start, :end, :phase, :feedback, :user)');
+            $stmt = $pdo->prepare('INSERT INTO projects (PID, UserName, Email, Title, StartDate, EndDate, Short_Description, Phase_Dev, Rating, Feedback, Cost) 
+                                   VALUES (NULL, :user, :email, :title, :start, :end, :desc, :phase, NULL, NULL, :cost)');
             $stmt->execute([
+                'user' => $_SESSION['username'],
+                'email' => $email,
                 'title' => $title,
-                'desc' => $description,
                 'start' => $startDate,
                 'end' => $endDate,
-                'phase' => $phase,
-                'feedback' => $feedback,
-                'user' => $_SESSION['username']]
-            );
+                'desc' => $description,
+                'phase' => "Design",
+                'cost' => $cost
+            ]);
             $success = 'Project created successfully!';
         } catch (PDOException $e) {
             $error = 'Error creating project: ' . $e->getMessage();
@@ -65,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav>
             <a href="home.php">Software.sys</a>
             <a href="register.php">Register</a>
-            <a href="login.html">Log in</a>
+            <a href="login.php">Log in</a>
         </nav>
     <?php endif; ?>
 </header>
@@ -75,13 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 style="font-size: 40px;">Create New Project</h1>
             
             <?php if ($error): ?>
-                <div style="color: red; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px;">
+                <div style="color: white; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px;">
                     <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
             
             <?php if ($success): ?>
-                <div style="color: green; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px;">
+                <div style="color: white; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px;">
                     <?= htmlspecialchars($success) ?>
                 </div>
             <?php endif; ?>
@@ -109,21 +118,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
                 <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Phase</label>
-                    <select name="phase" style="width: 90%; padding: 8px; border-radius: 5px; border: none;">
-                        <option value="Design">Design</option>
-                        <option value="Development">Development</option>
-                        <option value="Testing">Testing</option>
-                        <option value="Deployment">Deployment</option>
-                        <option value="Complete">Complete</option>
-                    </select>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Cost ($)</label>
+                    <input type="number" name="cost" min="0" step="0.01" style="width: 90%; padding: 8px; border-radius: 5px; border: none;">
                 </div>
-                
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Details/Feedback</label>
-                    <textarea name="feedback" style="width: 90%; padding: 8px; border-radius: 5px; border: none; min-height: 150px;"></textarea>
-                </div>
-                
+                             
                 <button type="submit" class="check-button" style="width: auto; padding: 10px 20px;">Create Project</button>
             </form>
         </section>
