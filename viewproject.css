@@ -1,0 +1,111 @@
+body {
+    margin: 0px auto;
+    padding: 0px;
+    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
+    max-width: 1700px;
+}
+
+body header nav{
+    display:flex;
+    background-color: white;
+    width:90%;
+    margin:0 auto;
+}
+body header nav a{
+    padding:10px;
+    text-decoration:none;
+    font-family:'Verdana', 'Arial Narrow', Arial, sans-serif;
+    color:black;
+    align-content:center;
+    font-size:clamp(15px,5vw,30px);
+    transition: all 0.5s;
+}
+
+body header nav a:hover{
+    color:white;
+    background-color:darkblue;
+}
+body header nav :nth-last-child(2){
+    margin-left:auto;
+}
+
+body header nav :nth-last-child(2-n) :hover {
+    background-color: grey; 
+    color:white;   
+}
+
+body header nav :first-child {
+    font-size:clamp(25px,7vw,50px);
+}
+
+
+main{
+    background: linear-gradient(to bottom, #001f3f, #0074D9);
+    width:100%;
+    color:white;    
+}
+.project-layout {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    margin: 0;
+    gap: 2rem;
+    max-width: 1700px;
+}
+
+.project-content {
+    flex: 2;
+    min-width: 0; /* Prevent overflow */
+}
+
+.project-content section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+.project-aside {
+    flex: 1;
+    min-width: 250px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+    position: sticky;
+    top: 20px;
+}
+
+.check-button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3a86ff, #2667cc);
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.check-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #2667cc, #3a86ff);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-aside {
+        position: static;
+        width: 100%;
+    }
+}
+
+
+

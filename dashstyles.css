@@ -1,0 +1,151 @@
+body{margin:0 auto; max-width: 1700px;}
+
+body header nav{
+    display:flex;
+    background-color: white;
+    width:90%;
+    margin:0 auto;
+}
+body header nav a{
+    padding:10px;
+    text-decoration:none;
+    font-family:'Verdana', 'Arial Narrow', Arial, sans-serif;
+    color:black;
+    align-content:center;
+    font-size:clamp(15px,5vw,30px);
+    transition: all 0.5s;
+}
+
+body header nav a:hover{
+    color:white;
+    background-color:darkblue;
+}
+body header nav :nth-last-child(2){
+    margin-left:auto;
+}
+
+body header nav :nth-last-child(2-n) :hover {
+    background-color: grey; 
+    color:white;   
+}
+
+body header nav :first-child {
+    font-size:clamp(25px,7vw,50px);
+}
+
+body main>section>p:first-child {
+    font-size:clamp(40px,6vw,60px);
+    margin:10px 0 10px 0;
+}
+body main>section>p:nth-child(2) {
+    font-size:clamp(25px,4vw,40px);
+    margin:20px 0 10px 0;
+}
+body main>section{
+    margin:10px auto;
+    width:90%;
+}
+
+main{
+    width:100%;
+}
+body{
+    width:100%;
+}
+main{
+    font-family:'Verdana', 'Arial Narrow', Arial, sans-serif;
+    font-size:20px;
+    background: linear-gradient(to bottom, #001f3f, #0074D9);
+    color:white;
+}
+
+main details{
+    margin-left:6%;
+    font-size: 25px;
+}
+details p{
+    margin-bottom: 10px;
+    margin-top:10px;
+}
+
+input{
+    width:50%;
+    height:25px;
+    border-radius: 15px;
+    border-color: rgb(95, 44, 146);
+}
+input:active, input:hover{
+    border-color:blue;
+}
+
+.error{
+    color:red;
+}
+
+select{
+    width:50%;
+    padding:5px;
+    border-radius: 10px;
+}
+
+main>section>section{
+    border-radius:10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding:20px;
+    margin:10px;
+}
+main>section>section .title{
+    font-size: 30px ;
+    margin:5px;
+}
+
+.project-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card .title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #003366;
+}
+
+.project-card .meta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.project-card .meta span {
+    font-weight: 600;
+    color: #007BFF;
+}
+
+.project-card .description {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.check-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.check-button:hover {
+    background-color: #0056b3;
+}
