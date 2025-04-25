@@ -50,25 +50,27 @@ if ($loggedin) {
             <header>Services we provide for you to help your company stand out</header>
             <section>
                 <aside>
-                    <img src="automation.png" style="width:100px; display: block; margin:20px auto;">
+                    <img src="automation.png" style="width:75px; display: block; margin:20px auto;">
                     <p>Get optimized code solutions for what you need: Just state your goals and our professional coders will give <em>wings to your dreams</em></p>
                 </aside>
                 <aside>
-                    <img src="updated.png" style="width:100px; display: block; margin:20px auto;">
+                    <img src="updated.png" style="width:75px; display: block; margin:20px auto;">
                     <p>Are you one of our previous customers and need an update to make your previous code modernized and <em>stand out from the crowd?</em> Get 
                     what you wish at discounted prices</p>
                 </aside>
                 <aside>
-                    <img src="cashback.png" style="width:100px; display: block; margin:20px auto;">
+                    <img src="cashback.png" style="width:75px; display: block; margin:20px auto;">
                     <p>And what's more, you can avail a refund should you give us a 2-star rating-- and the next
                     project you request for has a 20% discount if you give us a full five-star rating!</p>
                 </aside>
                 <aside>
+                    <img src="programming.png" style="width:75px; display: block; margin:20px auto;">
                     <p>Proficient in a wide variety of languages: from Node.js to Python for AI and developing customised Android and 
                         IOS apps, we can give you what you need <em>to succeed.</em>
                     </p>
                 </aside>
                 <aside>
+                    <img src="popularity.png" style="width:75px; display: block; margin:20px auto;">
                     <p>Struggling your website to gain popularity by search engines? We can offer customer-centric advice to help you
                         get noticed by others and help your startup grow quickly!
                     </p>
