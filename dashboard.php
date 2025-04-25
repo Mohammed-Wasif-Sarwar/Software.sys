@@ -3,7 +3,7 @@ session_start();
 require_once("headers.php");
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -70,7 +70,7 @@ $projectCount = $stmt->fetchColumn();
                     
                     <div class="detail-row">
                         <span class="detail-label">Email:</span>
-                        <span class="detail-value"><?= htmlspecialchars($SESSION['email'] ?? 'Not provided') ?></span>
+                        <span class="detail-value"><?= htmlspecialchars($user['Email'] ?? 'Not provided') ?></span>
                     </div>
                     
                     <div class="detail-row">
@@ -128,7 +128,7 @@ $projectCount = $stmt->fetchColumn();
                                     <span class="phase-badge <?= strtolower($project['Phase_Dev']) ?>"><?= htmlspecialchars($project['Phase_Dev']) ?></span>
                                     <span><?= date('M j, Y', strtotime($project['StartDate'])) ?> - <?= date('M j, Y', strtotime($project['EndDate'])) ?></span>
                                 </div>
-                                <a href="viewprojects.php" class="project-link">View Project →</a>
+                                <a href="viewprojects.php" class="project-link" style="color:white;">View Project →</a>
                             </div>
                         <?php endforeach; ?>
                     </div>
