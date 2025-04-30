@@ -95,11 +95,11 @@ button a{
 }
 
 #main>section>aside{
-    font-size: clamp(15px, 4vw, 25px);
+    font-size: clamp(15px, 4vw, 21px);
     text-align: justify;
     margin:20px;
     gap:20px;
-    width:25%;
+    width:22%;
     color:black;
     background-color: whitesmoke;
     padding:30px;
@@ -124,5 +124,130 @@ button a{
 @media (max-width:970px) {
     #main>section>aside{
         width:70%;
+    }
+}
+
+#response{
+    width:100%;
+    background-color:rgb(206, 223, 237);
+    padding-top:20px;
+}
+
+#response header{
+    width:50%;
+    font-size:clamp(35px,5vw,44px);
+    color:#0057bb;
+    margin:20px auto;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom:60px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 30%;
+    height: 300px;
+    perspective: 1000px;
+    margin: 20px 0;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.flip-card-front {
+    background-color: #0057bb;
+    color: white;
+}
+
+.flip-card-back {
+    background-color: white;
+    color: #0057bb;
+    transform: rotateY(180deg);
+    border: 2px solid #0057bb;
+}
+
+.flip-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+}
+
+.stars {
+    font-size: 1.8rem;
+    color: gold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+.flip-card p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+}
+
+.flip-card-back p:first-child {
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 700px) {
+    .flip-card {
+        width: 250px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 500px) {
+    .testimonial-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .flip-card {
+        width: 80%;
+        height: 200px;
+    }
+}
+
+@media (max-width: 1200px){
+    .flip-card{
+        height:clamp(450px,5vw,500px);
+    }
+
+    .flip-card p {
+        margin: 5px 0;
+        font-size: 1.0rem;
     }
 }

@@ -25,13 +25,13 @@ if ($loggedin) {
         <header>
         <?php if ($loggedin): ?>
         <nav>
-            <a href="home.php"><img src="computing.png" alt="Computers" style="width:40px; align:center;">Software.sys</a>
+            <a href="home.php"><img src="computing.png" alt="Computers" style="width:clamp(20px,5vw,35px); align:center;">Software.sys</a>
             <a href="dashboard.php">Welcome <?= $username ?></a>
             <a href="dashboard.php"><?= $flag ?></a>
         </nav>
     <?php else: ?>
         <nav>
-            <a href="home.php">Software.sys</a>
+            <a href="home.php"><img src="computing.png" alt="Computers" style="width:clamp(20px,5vw,35px); align:center;">Software.sys</a>
             <a href="register.php">Register</a>
             <a href="login.php">Log in</a>
         </nav>
@@ -79,7 +79,7 @@ if ($loggedin) {
         </section>
     <section id="response">
     <header>
-        Hear what our users think of our work!
+        Here is what our users think of our work!
     </header>
     <div class="testimonial-container">
         <?php
@@ -111,6 +111,7 @@ if ($loggedin) {
             </div>
         <?php endforeach; ?>
     </div>
+    <?php @require_once("footers.php"); ?>
 </section>
 
 <?php

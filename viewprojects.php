@@ -55,20 +55,22 @@ $isOwner = $loggedin && $project['UserName'] === $_SESSION['username'];
     <div class="project-content">
         <section>
             <p style="font-weight:bold; font-size: 40px;"><?= htmlspecialchars($project['Title']) ?></p>
-            <p style="font-weight:bold; font-size: 30px;"><?= htmlspecialchars($project['Short_Description']) ?></p>
         </section>
         <section style="font-size:20px">
             <p><strong>Start Date:</strong> <?= htmlspecialchars($project['StartDate']) ?></p>
             <p><strong>End Date:</strong> <?= htmlspecialchars($project['EndDate']) ?></p>
             <p><strong>Phase:</strong> <?= htmlspecialchars($project['Phase_Dev']) ?></p>
+            <p><strong>Budget to be completed in:</strong> <?= htmlspecialchars($project['Cost']) ?></p>
             <p><strong>Details:</strong></p>
+            <p style="font-weight:bold; font-size:24px;"><?= htmlspecialchars($project['Short_Description']) ?></p>
+            <p><strong>Feedback:</strong></p>
             <p><?= nl2br(htmlspecialchars($project['Feedback'])) ?></p>
         </section>
     </div>
 
     <aside class="project-aside">
         <?php if (!$loggedin): ?>
-            <p><strong>Register now</strong> to start your own project!</p>
+            <p style="color:blue;"><strong>Register now</strong> to start your own project!</p>
         <?php elseif ($isOwner): ?>
             <a class="check-button" href="newproject.php">Add New Project</a>
             <a class="check-button" href="editproject.php?id=<?= urlencode($project['PID']) ?>">Edit Project</a>
@@ -77,6 +79,6 @@ $isOwner = $loggedin && $project['UserName'] === $_SESSION['username'];
         <?php endif; ?>
     </aside>
 </main>
-
+<?php @require_once("footers.php"); ?>
 </body>
 </html>

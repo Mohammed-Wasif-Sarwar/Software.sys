@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
                 <button type="submit" class="check-button" style="width: auto; padding: 10px 20px;">Update Project</button>
-                <a href="viewproject.php?id=<?= urlencode($pid) ?>" class="check-button" style="display: inline-block; width:90%;margin-left: 10px; background: #6c757d; text-decoration: none;">Cancel</a>
+                <a href="projects.php" class="check-button" style="display: inline-block; width:90%;margin-left: 10px; background: #6c757d; text-decoration: none;">Cancel</a>
             </form>
             <?php endif; ?>
         </section>

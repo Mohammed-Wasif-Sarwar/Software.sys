@@ -146,6 +146,7 @@ $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>No projects found.</p>
         <?php endif; ?>
     </section>
+    <?php @require_once("footers.php"); ?>
 </main>
 </body>
 </html>

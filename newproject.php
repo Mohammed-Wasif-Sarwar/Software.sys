@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 5px; font-weight: bold;">Cost ($)</label>
-                    <input type="number" name="cost" min="0" step="0.01" style="width: 90%; padding: 8px; border-radius: 5px; border: none;">
+                    <input type="number" name="cost" min="0" required step="0.01" style="width: 90%; padding: 8px; border-radius: 5px; border: none;">
                 </div>
                              
                 <button type="submit" class="check-button" style="width: auto; padding: 10px 20px;">Create Project</button>
