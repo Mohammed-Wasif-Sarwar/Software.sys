@@ -25,7 +25,7 @@ if ($loggedin) {
         <header>
         <?php if ($loggedin): ?>
         <nav>
-            <a href="home.php">Software.sys</a>
+            <a href="home.php"><img src="computing.png" alt="Computers" style="width:40px; align:center;">Software.sys</a>
             <a href="dashboard.php">Welcome <?= $username ?></a>
             <a href="dashboard.php"><?= $flag ?></a>
         </nav>
@@ -67,7 +67,7 @@ if ($loggedin) {
                     <img src="programming.png" style="width:75px; display: block; margin:20px auto;">
                     <p>Proficient in a wide variety of languages: from Node.js to Python for AI and developing customised Android and 
                         IOS apps, we can give you what you need <em>to succeed.</em>
-                    </p>
+                    </p>    
                 </aside>
                 <aside>
                     <img src="popularity.png" style="width:75px; display: block; margin:20px auto;">
@@ -77,9 +77,51 @@ if ($loggedin) {
                 </aside>
             </section>
         </section>
-        <section>
-              <header></header>
-        </section>
+    <section id="response">
+    <header>
+        Hear what our users think of our work!
+    </header>
+    <div class="testimonial-container">
+        <?php
 
+        $stmt = $pdo->prepare("SELECT p.*, u.First_Name, u.Second_Name, c.Flag, c.Country 
+                              FROM projects p
+                              JOIN users u ON p.UserName = u.UserName
+                              JOIN countries c ON u.Country = c.Country
+                              WHERE p.Rating = 5
+                              ORDER BY RAND() 
+                              LIMIT 2");
+        $stmt->execute();
+        $testimonials = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($testimonials as $project): ?>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3><?= htmlspecialchars($project['Title']) ?></h3>
+                        <div class="stars">★★★★★</div>
+                        <p>"<?= htmlspecialchars(shortenFeedback($project['Feedback'] ?? '')) ?>"</p>
+                        <p>- <?= htmlspecialchars($project['First_Name'] . ' ' . $project['Second_Name']) ?></p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>"<?= htmlspecialchars($project['Feedback']) ?>"</p>
+                        <p>- <?= htmlspecialchars($project['First_Name'] . ' ' . $project['Second_Name']) ?>, <?= htmlspecialchars($project['Country']) ?> <?= $project['Flag'] ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+<?php
+
+function shortenFeedback($feedback, $maxLength = 80) {
+    if (strlen($feedback) <= $maxLength) {
+        return $feedback;
+    }
+    return substr($feedback, 0, $maxLength) . '...';
+}
+?>
+</section>
     </body>
 </html>
